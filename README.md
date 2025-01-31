@@ -22,3 +22,20 @@ Before running the system, ensure you have the following:
    ```bash
    streamlit run app.py
 
+## Example Queries:
+
+1. Query: I want to learn solidity which course should I start from?
+   Response: You can start with the following courses:
+
+   "Writing your first ever solidity contract" - This course will help you get started with the basics of Solidity and smart contract development.
+
+   "Build and deploy a Social Media dApp using Solidity" - This course will help you apply your Solidity knowledge in a practical project.
+
+   "Build and deploy a Lending app on Core using Solidity" - This course will further enhance your Solidity skills by building a lending app.
+
+2. Query: Can you help me learn about Etheruem?
+   Response: Yes, I can certainly help you learn about Ethereum. Here are the top 3 most relevant courses for you:
+
+   "Into the World of Ethereum" - This course provides an overview of Ethereum, its safety features, and why it's popular.
+   "What Are We Building Today?" - This course dives deep into the Ethereum Blockchain, explaining its importance and how it works.
+   "How does Ethereum work - A deepdive" - This course offers a comprehensive understanding of Ethereum, including its comparison with other blockchains.
