@@ -6,6 +6,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
+from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 from dotenv import load_dotenv
 import warnings
