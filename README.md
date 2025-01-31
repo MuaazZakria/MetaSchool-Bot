@@ -1,6 +1,7 @@
 # MetaSchool Bot
 
 This project uses Streamlit to build a conversational AI system that retrieves relevant course information based on user queries. The system is powered by OpenAI's GPT-4 model and uses Pinecone as a vector database for storing and retrieving contextual information.
+The indexing logic is maintained in indexing.py
 
 ## Prerequisites
 
