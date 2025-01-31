@@ -41,3 +41,6 @@ Before running the system, ensure you have the following:
    "Into the World of Ethereum" - This course provides an overview of Ethereum, its safety features, and why it's popular.
    "What Are We Building Today?" - This course dives deep into the Ethereum Blockchain, explaining its importance and how it works.
    "How does Ethereum work - A deepdive" - This course offers a comprehensive understanding of Ethereum, including its comparison with other blockchains.
+
+## Deployed Link for Testing:
+ https://metaschool-bot-ti12.streamlit.app/
