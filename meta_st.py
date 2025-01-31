@@ -20,18 +20,30 @@ load_dotenv()
 openai_api_key = os.getenv("OPEN_AI_KEY")
 pinecone_api_key = os.getenv("PINECONE_API_KEY")
 
-# Initialize Pinecone
-pinecone.init(api_key=pinecone_api_key)
+
 
 # Set up the model for embeddings
 model = OpenAIEmbeddings(model="text-embedding-3-small", openai_api_key=openai_api_key)
 
 # Set the index and namespace for Pinecone
-index_name = "metaschool"
+index_name = "metaschool-new-index"
 namespace = "default_namespace"
 
 # Connect to the Pinecone index
-index = pinecone.Index(index_name)
+
+pc = Pinecone(api_key=pinecone_api_key)
+
+
+existing_indexes = [index_info["name"] for index_info in pc.list_indexes()]
+if index_name not in existing_indexes:
+    pc.create_index(
+        name=index_name,
+        dimension=1536,
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1"),
+    )
+
+index = pc.Index(index_name)
 
 # Set up the vector store to interface with Pinecone
 vectorstore = PineconeVectorStore(
@@ -63,10 +75,7 @@ INSTRUCTIONS:
 - DO NOT greet with every response.
 - IF the context is not similar to the question, respond with 'I don't know the answer'.
 - Make the answers short concise and precise.
-
-FORMATTING INSTRUCTION:
-- DO NOT add any asterisks in the response.
-- Keep the response plain in simple strings.
+- Display top 3 most relevant courses for the question with their names.
 """
 
 PROMPT = PromptTemplate(
@@ -89,7 +98,7 @@ qa_chain = ConversationalRetrievalChain.from_llm(
 )
 
 # Set up Streamlit title and interface
-st.title("Chatbot for Interns/Trainees")
+st.title("MetaSchool Bot")
 
 # Ensure session state is set up for conversation history
 if "messages" not in st.session_state:
@@ -103,14 +112,19 @@ for message in st.session_state.messages:
 # Handle user input
 if prompt := st.chat_input("Ask a question..."):
     # Store the user message in session state
+    print(prompt)
+    print(type(prompt))
     st.session_state.messages.append({"role": "user", "content": prompt})
     
     with st.chat_message("user"):
+        print("reached here")
         st.markdown(prompt)
 
     # Get the assistant's response using the QA chain
     with st.chat_message("assistant"):
+        print("reached here 2")
         result = qa_chain.invoke({"question": prompt})
+        print(result)
         response = result['answer']
         st.markdown(response)
 
