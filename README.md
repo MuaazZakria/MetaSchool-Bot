@@ -16,7 +16,9 @@ Before running the system, ensure you have the following:
    ```bash
    git clone https://github.com/MuaazZakria/MetaSchool-Bot/
 2. Install the required demendepecies:
+   ```bash
    pip install -r requirements.txt
-3. Run the app using:
+4. Run the app using:
+   ```bash
    streamlit run app.py
 
